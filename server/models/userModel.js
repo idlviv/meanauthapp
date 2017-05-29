@@ -35,12 +35,32 @@ module.exports.getUserByUsername = function(username, callback) {
   User.findOne(query, callback);
 };
 
-module.exports.addUser = function(newUser, callback) {
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(newUser.password, salt, (err, hash) => {
-      if (err) throw err;
-      newUser.password = hash;
-      newUser.save(callback);
-    })
-  });
+module.exports.addUser = function(newUser) {
+  bcrypt.hash(newUser.password, 10)
+    .then((hash) => {
+        newUser.password = hash;
+        newUser.save()
+          .then(
+            function(user) {
+              console.log('user', user);
+              return user; //{success: true, msg: 'User registered'};
+            })
+          .catch(
+            function(err) {
+              console.log('err', err);
+
+              return {success: false, msg: 'Failed to register user'};
+            });
+      })
+    .catch(err => {
+      throw err;
+    });
+
+  // bcrypt.genSalt(10, (err, salt) => {
+  //   bcrypt.hash(newUser.password, salt, (err, hash) => {
+  //     if (err) throw err;
+  //     newUser.password = hash;
+  //     newUser.save(callback);
+  //   })
+  // });
 };
