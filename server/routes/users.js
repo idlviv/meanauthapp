@@ -20,37 +20,73 @@ router.post('/register', function(req, res, next) {
 });
 
 router.post('/authenticate', function(req, res, next) {
-    const username = req.body.username;
-    const password = req.body.password;
+  const username = req.body.username;
+  const password = req.body.password;
 
-    UserModel.getUserByUsername(username, (err, user) =>{
-      if (err) {
-        throw err;
-      }
+  UserModel.getUserByUsername(username)
+    .then((user) => {
+
       if (!user) {
         return res.json({success: false, msg: 'User not found'});
       }
-      UserModel.comparePassword(password, user.password, (err, isMatch) => {
-        if (err) {throw err;}
-        if (isMatch) {
-          const token = jwt.sign(user, config.get('mongoose:secret'), {
-            expiresIn: 604800 //1 week
-          });
-          res.json({
-            success: false,
-            token: 'JWT' + token,
-            user: {
-              id: user._id,
-              name: user.username,
-              email: user.email
-            }
-          });
-        } else {
-          return res.json({success: false, msg: 'Wrong password'});
-        }
-      })
-    });
+
+      UserModel.comparePassword(password, user.password)
+        .then((isMatch) => {
+          if (isMatch) {
+            const token = jwt.sign(user, config.get('mongoose:secret'), {
+              expiresIn: 604800 //1 week
+            });
+            res.json({
+              success: true, token: 'JWT' + token, user: {
+                id: user._id, name: user.username, email: user.email
+              }
+            });
+          } else {
+            return res.json({success: false, msg: 'Wrong password'});
+          }
+        })
+        .catch((error) => {
+          throw error;
+        });
+
+    })
+  .catch((error) => {
+    throw error;
+  });
 });
+
+// router.post('/authenticate', function(req, res, next) {
+//     const username = req.body.username;
+//     const password = req.body.password;
+//
+//     UserModel.getUserByUsername(username, (err, user) => {
+//       if (err) {
+//         throw err;
+//       }
+//       if (!user) {
+//         return res.json({success: false, msg: 'User not found'});
+//       }
+//       UserModel.comparePassword(password, user.password, (err, isMatch) => {
+//         if (err) {throw err;}
+//         if (isMatch) {
+//           const token = jwt.sign(user, config.get('mongoose:secret'), {
+//             expiresIn: 604800 //1 week
+//           });
+//           res.json({
+//             success: true,
+//             token: 'JWT' + token,
+//             user: {
+//               id: user._id,
+//               name: user.username,
+//               email: user.email
+//             }
+//           });
+//         } else {
+//           return res.json({success: false, msg: 'Wrong password'});
+//         }
+//       })
+//     });
+// });
 
 router.get('/profile', function(req, res, next) {
   res.send('Profile');
