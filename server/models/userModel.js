@@ -27,12 +27,12 @@ let UserModel = mongoose.model('user', UserSchema);
 module.exports = UserModel;
 
 module.exports.getUserById = function(id, callback) {
-  User.findById(id, callback);
+  UserModel.findById(id, callback);
 };
 
 module.exports.getUserByUsername = function(username, callback) {
   query = {username: username};
-  User.findOne(query, callback);
+  UserModel.findOne(query, callback);
 };
 
 module.exports.addUser = function(newUser) {
@@ -45,5 +45,12 @@ module.exports.addUser = function(newUser) {
             .catch(() => reject({success: false, msg: 'Failed to register user'}));
         })
       .catch((error) => {throw error;});
+  });
+};
+
+module.exports.comparePassword = function(candidatePassword, hash, callback) {
+  bcrypt.compare(candidatePassword, hash, (err, isMatch) => {
+    if (err) throw err;
+    callback(null, isMatch);
   });
 };

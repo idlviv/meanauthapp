@@ -20,11 +20,15 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+app.use(passport.initialize());
+app.use(passport.session());
+require('./server/config/passport')(passport);
+
+app.use('/api', users);
+
 app.get('/', function(req, res) {
   res.send('node');
 });
-
-app.use('/api', users);
 
 app.use(function(err, req, res, next) {
   if (app.get('env') === 'development') {
