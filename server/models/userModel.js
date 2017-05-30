@@ -36,31 +36,14 @@ module.exports.getUserByUsername = function(username, callback) {
 };
 
 module.exports.addUser = function(newUser) {
-  bcrypt.hash(newUser.password, 10)
-    .then((hash) => {
-        newUser.password = hash;
-        newUser.save()
-          .then(
-            function(user) {
-              console.log('user', user);
-              return user; //{success: true, msg: 'User registered'};
-            })
-          .catch(
-            function(err) {
-              console.log('err', err);
-
-              return {success: false, msg: 'Failed to register user'};
-            });
-      })
-    .catch(err => {
-      throw err;
-    });
-
-  // bcrypt.genSalt(10, (err, salt) => {
-  //   bcrypt.hash(newUser.password, salt, (err, hash) => {
-  //     if (err) throw err;
-  //     newUser.password = hash;
-  //     newUser.save(callback);
-  //   })
-  // });
+  return new Promise(function(resolve, reject) {
+    bcrypt.hash(newUser.password, 10)
+      .then((hash) => {
+          newUser.password = hash;
+          newUser.save()
+            .then(() => resolve({success: true, msg: 'User registered'}))
+            .catch(() => reject({success: false, msg: 'Failed to register user'}));
+        })
+      .catch((error) => {throw error;});
+  });
 };

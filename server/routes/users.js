@@ -13,22 +13,9 @@ router.post('/register', function(req, res, next) {
     password: req.body.password,
   });
 
-  // let promise = new Promise((resolve, reject) => {
-  //   UserModel.addUser(newUser);
-  //   resolve(res.json({success: true, msg: 'User registered'}));
-  //   // reject вызван раньше, resolve будет проигнорирован
-  //   reject( res.json({success: false, msg: 'Failed to register user'}));
-  // });
-  let p = UserModel.addUser(newUser);
-  console.log(p);
-  res.json(p);
-  // UserModel.addUser(newUser, (err,user) => {
-  //   if (err) {
-  //     res.json({success: false, msg: 'Failed to register user'});
-  //   } else {
-  //     res.json({success: true, msg: 'User registered'});
-  //   }
-  // })
+  UserModel.addUser(newUser)
+    .then((result) => res.json(result))
+    .catch((error) => res.json(error));
 });
 
 router.post('/authenticate', function(req, res, next) {
