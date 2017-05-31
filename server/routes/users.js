@@ -37,7 +37,7 @@ router.post('/authenticate', function(req, res, next) {
               expiresIn: 604800 //1 week
             });
             res.json({
-              success: true, token: 'JWT' + token, user: {
+              success: true, token: 'JWT ' + token, user: {
                 id: user._id, name: user.username, email: user.email
               }
             });
@@ -89,11 +89,10 @@ router.post('/authenticate', function(req, res, next) {
 // });
 
 router.get(
-  '/profile',
-  passport.authenticate('jwt', {session: false}),
+  '/profile', passport.authenticate('jwt', {session: false}),
   (req, res, next) => {
-    res.send('Profile');
-});
+    res.json({user: req.user});
+  });
 
 router.get('/validate', function(req, res, next) {
   res.json({user: req.user});

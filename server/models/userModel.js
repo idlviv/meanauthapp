@@ -30,7 +30,7 @@ module.exports.getUserById = function(_id) {
   return new Promise((resolve, reject) => {
     UserModel.findById(_id)
       .then((user) => resolve(user))
-      .catch((err) => reject(err))
+      .catch((err) => reject(err));
   });
 };
 // module.exports.getUserById = function(id, callback) {

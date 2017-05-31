@@ -9,7 +9,7 @@ module.exports = function(passport) {
   opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
   opts.secretOrKey = config.get('mongoose:secret');
   passport.use(new JwtStrategy(opts, (jwtPayload, done) => {
-    UserModel.getUserById(jwtPayload._id)
+    UserModel.getUserById(jwtPayload._doc._id)
       .then((user) => {
         if (user) {
           done(null, user);
@@ -20,16 +20,5 @@ module.exports = function(passport) {
       .catch((error) => {
         done(error, false);
       });
-
-    // UserModel.getUserById(jwtPayload._id, (err, user) => {
-    //   if (err) {
-    //     return done(err, false);
-    //   }
-    //   if (user) {
-    //     done(null, user);
-    //   } else {
-    //     done(null, false);
-    //   }
-    // });
   }));
 };
