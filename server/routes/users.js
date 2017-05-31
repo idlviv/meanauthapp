@@ -88,12 +88,15 @@ router.post('/authenticate', function(req, res, next) {
 //     });
 // });
 
-router.get('/profile', function(req, res, next) {
-  res.send('Profile');
+router.get(
+  '/profile',
+  passport.authenticate('jwt', {session: false}),
+  (req, res, next) => {
+    res.send('Profile');
 });
 
 router.get('/validate', function(req, res, next) {
-  res.send('Validate');
+  res.json({user: req.user});
 });
 
 module.exports = router;
