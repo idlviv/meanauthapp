@@ -12,8 +12,34 @@ export class AuthService {
   registerUser(user) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:8080/api/register', user, {headers: headers})
+    return this.http.post(
+      'http://localhost:8080/api/register',
+      user,
+      {headers: headers})
       .map(res => res.json())
+  }
+
+  authUser(user) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(
+      'http://localhost:8080/api/authenticate',
+      user,
+      {headers: headers})
+      .map(res => res.json())
+  }
+
+  storeUserData(token, user) {
+    localStorage.setItem('id_token', token);
+    localStorage.setItem('user', JSON.stringify(user));
+    this.authToken = token;
+    this.user = user;
+  }
+
+  logout() {
+    this.authToken = null;
+    this.user = null;
+    localStorage.clear();
   }
 
 }
