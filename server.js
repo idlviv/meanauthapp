@@ -30,6 +30,10 @@ app.get('/', function(req, res) {
   res.send('node');
 });
 
+app.get('*', (req,res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
 app.use(function(err, req, res, next) {
   if (app.get('env') === 'development') {
     let errorHandler = errorhandler();
@@ -40,5 +44,5 @@ app.use(function(err, req, res, next) {
   }
 });
 
-app.listen(config.get('port'),
-  () => console.log('Server on port' + config.get('port')));
+app.listen(config.get(process.env.PORT || 'port'),
+  () => console.log('Server on port ' + config.get('port')));

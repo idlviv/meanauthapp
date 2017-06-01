@@ -14,7 +14,7 @@ export class AuthService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.post(
-      'http://localhost:8080/api/register',
+      'api/register',
       user,
       {headers: headers})
       .map(res => res.json());
@@ -24,7 +24,7 @@ export class AuthService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.post(
-      'http://localhost:8080/api/authenticate',
+      'api/authenticate',
       user,
       {headers: headers})
       .map(res => res.json());
@@ -36,7 +36,7 @@ export class AuthService {
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
     return this.http.get(
-      'http://localhost:8080/api/profile',
+      'api/profile',
       {headers: headers})
       .map(res => res.json());
   }
