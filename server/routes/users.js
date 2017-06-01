@@ -29,7 +29,6 @@ router.post('/authenticate', function(req, res, next) {
       if (!user) {
         return res.json({success: false, msg: 'User not found'});
       }
-
       UserModel.comparePassword(password, user.password)
         .then((isMatch) => {
           if (isMatch) {
@@ -49,45 +48,11 @@ router.post('/authenticate', function(req, res, next) {
         .catch((error) => {
           throw error;
         });
-
     })
   .catch((error) => {
     throw error;
   });
 });
-
-// router.post('/authenticate', function(req, res, next) {
-//     const username = req.body.username;
-//     const password = req.body.password;
-//
-//     UserModel.getUserByUsername(username, (err, user) => {
-//       if (err) {
-//         throw err;
-//       }
-//       if (!user) {
-//         return res.json({success: false, msg: 'User not found'});
-//       }
-//       UserModel.comparePassword(password, user.password, (err, isMatch) => {
-//         if (err) {throw err;}
-//         if (isMatch) {
-//           const token = jwt.sign(user, config.get('mongoose:secret'), {
-//             expiresIn: 604800 //1 week
-//           });
-//           res.json({
-//             success: true,
-//             token: 'JWT' + token,
-//             user: {
-//               id: user._id,
-//               name: user.username,
-//               email: user.email
-//             }
-//           });
-//         } else {
-//           return res.json({success: false, msg: 'Wrong password'});
-//         }
-//       })
-//     });
-// });
 
 router.get(
   '/profile', passport.authenticate('jwt', {session: false}),
