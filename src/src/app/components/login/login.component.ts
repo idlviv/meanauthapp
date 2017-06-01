@@ -39,13 +39,6 @@ export class LoginComponent implements OnInit {
             });
           this.router.navigate(['/dashboard']);
 
-          // this.flashMessage.show(
-          //   data.msg,
-          //   {'sdf',
-          //     cssClass: 'alert-success',
-          //     timeout: 3000
-          //   });
-          // this.router.navigate(['/login']);
         } else {
           this.flashMessage.show(
              data.msg,
