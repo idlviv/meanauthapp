@@ -13,7 +13,7 @@ const users = require('./server/routes/users');
 
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -46,4 +46,4 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(config.get(process.env.PORT || 'port'),
-  () => console.log('Server on port ' + config.get('port')));
+  () => console.log('Server on port ' + config.get(process.env.PORT || 'port')));
