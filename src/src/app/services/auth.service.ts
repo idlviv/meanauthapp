@@ -53,7 +53,7 @@ export class AuthService {
       this.authToken = token;
   }
 
-  loggedIn() {
+  public loggedIn() {
     return tokenNotExpired();
   }
 

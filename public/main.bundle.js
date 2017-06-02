@@ -430,14 +430,14 @@ module.exports = "<h2>Dashboard</h2>\r\n<p>\r\n  Welcome to dashboard!\r\n</p>\r
 /***/ 171:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"jumbotron text-center\">\r\n  <h1>Autentication</h1>\r\n  <p class=\"lead\">Welcome</p>\r\n  <div>\r\n    <a class=\"btn btn-primary\" [routerLink]=\"['/register']\">Register</a>\r\n    <a class=\"btn btn-primary\" [routerLink]=\"['/login']\">Login</a>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-md-4\">\r\n    <h3>Express Backend</h3>\r\n    <p>Some text</p>\r\n  </div>\r\n  <div class=\"col-md-4\">\r\n    <h3>Angular-cli</h3>\r\n    <p>Some text</p>\r\n  </div>\r\n  <div class=\"col-md-4\">\r\n    <h3>JWT</h3>\r\n    <p>Some text</p>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"jumbotron text-center\">\n  <h1>Autentication</h1>\n  <p class=\"lead\">Welcome</p>\n  <div>\n    <a class=\"btn btn-primary\" [routerLink]=\"['/register']\">Register</a>\n    <a class=\"btn btn-primary\" [routerLink]=\"['/login']\">Login</a>\n  </div>\n</div>\n\n<div class=\"row\">\n  <div class=\"col-md-4\">\n    <h3>Express Backend</h3>\n    <p>Some text</p>\n  </div>\n  <div class=\"col-md-4\">\n    <h3>Angular-cli</h3>\n    <p>Some text</p>\n  </div>\n  <div class=\"col-md-4\">\n    <h3>JWT</h3>\n    <p>Some text</p>\n  </div>\n</div>"
 
 /***/ }),
 
 /***/ 172:
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Login</h2>\r\n<form (submit)=\"onLoginSubmit()\">\r\n\r\n  <div class=\"form-group\">\r\n    <label for=\"username\">UserName</label>\r\n    <input type=\"text\" [(ngModel)]=\"username\"\r\n           name=\"username\" class=\"form-control\" id=\"username\">\r\n  </div>\r\n\r\n  <div class=\"form-group\">\r\n    <label for=\"password\">Password</label>\r\n    <input type=\"password\" [(ngModel)]=\"password\"\r\n           name=\"password\" class=\"form-control\" id=\"password\">\r\n  </div>\r\n  <input type=\"submit\" class=\"btn btn-primary\" value=\"Submit\">\r\n</form>"
+module.exports = "<h2 class=\"page-header\">Login</h2>\n<form (submit)=\"onLoginSubmit()\">\n\n  <div class=\"form-group\">\n    <label for=\"username\">UserName</label>\n    <input type=\"text\" [(ngModel)]=\"username\"\n           name=\"username\" class=\"form-control\" id=\"username\">\n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"password\">Password</label>\n    <input type=\"password\" [(ngModel)]=\"password\"\n           name=\"password\" class=\"form-control\" id=\"password\">\n  </div>\n  <input type=\"submit\" class=\"btn btn-primary\" value=\"Submit\">\n</form>"
 
 /***/ }),
 
@@ -451,14 +451,14 @@ module.exports = "<nav class=\"navbar navbar-default\">\r\n  <div class=\"contai
 /***/ 174:
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"user\">\r\n  <h2 class=\"page-header\">Profile of {{user.name}}</h2>\r\n  <ul class=\"list-group\">\r\n    <li class=\"list-group-item\">username: {{user.username}}</li>\r\n    <li class=\"list-group-item\">email: {{user.email}}</li>\r\n  </ul>\r\n</div>\r\n"
+module.exports = "<div *ngIf=\"user\">\n  <h2 class=\"page-header\">Profile of {{user.name}}</h2>\n  <ul class=\"list-group\">\n    <li class=\"list-group-item\">username: {{user.username}}</li>\n    <li class=\"list-group-item\">email: {{user.email}}</li>\n  </ul>\n</div>\n"
 
 /***/ }),
 
 /***/ 175:
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Register</h2>\r\n<form (submit)=\"onRegisterSubmit()\">\r\n  <div class=\"form-group\">\r\n    <label for=\"name\">Name</label>\r\n    <input type=\"text\" [(ngModel)]=\"name\" name=\"name\" class=\"form-control\" id=\"name\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"username\">UserName</label>\r\n    <input type=\"text\" [(ngModel)]=\"username\" name=\"username\" class=\"form-control\" id=\"username\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"email\">Email</label>\r\n    <input type=\"text\" [(ngModel)]=\"email\" name=\"email\" class=\"form-control\" id=\"email\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"password\">Password</label>\r\n    <input type=\"password\" [(ngModel)]=\"password\" name=\"password\" class=\"form-control\" id=\"password\">\r\n  </div>\r\n  <input type=\"submit\" class=\"btn btn-primary\" value=\"Submit\">\r\n</form>"
+module.exports = "<h2 class=\"page-header\">Register</h2>\n<form (submit)=\"onRegisterSubmit()\">\n  <div class=\"form-group\">\n    <label for=\"name\">Name</label>\n    <input type=\"text\" [(ngModel)]=\"name\" name=\"name\" class=\"form-control\" id=\"name\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"username\">UserName</label>\n    <input type=\"text\" [(ngModel)]=\"username\" name=\"username\" class=\"form-control\" id=\"username\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"email\">Email</label>\n    <input type=\"text\" [(ngModel)]=\"email\" name=\"email\" class=\"form-control\" id=\"email\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"password\">Password</label>\n    <input type=\"password\" [(ngModel)]=\"password\" name=\"password\" class=\"form-control\" id=\"password\">\n  </div>\n  <input type=\"submit\" class=\"btn btn-primary\" value=\"Submit\">\n</form>"
 
 /***/ }),
 
@@ -841,8 +841,7 @@ var NavbarComponent = (function () {
         this.router = router;
         this.flashMessage = flashMessage;
     }
-    NavbarComponent.prototype.ngOnInit = function () {
-    };
+    NavbarComponent.prototype.ngOnInit = function () { };
     NavbarComponent.prototype.onLogoutClick = function () {
         this.authService.logout();
         this.flashMessage.show('Logged out', {

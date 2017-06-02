@@ -31,7 +31,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('*', (req,res) => {
-  res.sendFile(path.join(__dirname, '/dist'));
+  res.sendFile(path.join(__dirname, '/public'));
 });
 
 app.use(function(err, req, res, next) {
