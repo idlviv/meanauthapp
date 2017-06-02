@@ -45,5 +45,5 @@ app.use(function(err, req, res, next) {
   }
 });
 
-app.listen(config.get(process.env.PORT || 'port'),
-  () => console.log('Server on port ' + config.get(process.env.PORT || 'port')));
+app.listen(process.env.PORT || config.get('port'),
+  () => console.log('Server on port ' + process.env.PORT || config.get('port')));
