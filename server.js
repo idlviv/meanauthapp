@@ -31,10 +31,11 @@ app.get('/', function(req, res) {
 });
 
 app.get('*', (req,res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'));
+  res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
 app.use(function(err, req, res, next) {
+
   if (app.get('env') === 'development') {
     let errorHandler = errorhandler();
     console.log('errorhandler catch error');
